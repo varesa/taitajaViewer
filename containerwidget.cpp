@@ -7,6 +7,7 @@
 #include "containerwidget.h"
 #include "webviewerwidget.h"
 #include "idchangewidget.h"
+#include "idstore.h"
 
 ContainerWidget::ContainerWidget(QWidget *parent) :
     QStackedWidget(parent)
@@ -34,12 +35,7 @@ void ContainerWidget::keyPressEvent(QKeyEvent *e) {
 void ContainerWidget::showWebview() {
     QLineEdit *line = idwidget->lineedit;
 
-    QFile idfile(QDir::homePath() + "/id.txt");
-    idfile.open(QIODevice::WriteOnly | QIODevice::Text);
-    qDebug() << idfile.fileName();
-    QTextStream out(&idfile);
-    out << line->text();
-    idfile.close();
+    IdStore::store(line->text());
 
     this->widget(1)->hide();
     this->widget(0)->show();

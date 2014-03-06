@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     webviewerwidget.cpp \
     idchangewidget.cpp \
     configparser.cpp \
-    vars.cpp
+    vars.cpp \
+    idstore.cpp
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 QT += webkit webkitwidgets
@@ -21,4 +22,5 @@ HEADERS += \
     webviewerwidget.h \
     idchangewidget.h \
     configparser.h \
-    vars.h
+    vars.h \
+    idstore.h
