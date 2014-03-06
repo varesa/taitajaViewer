@@ -12,8 +12,8 @@ SOURCES += main.cpp \
     vars.cpp \
     idstore.cpp
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-QT += webkit webkitwidgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets
+QT += webkit
 
 QMAKE_CXXFLAGS += -std=gnu++0x
 
