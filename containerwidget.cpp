@@ -13,8 +13,11 @@ ContainerWidget::ContainerWidget(QWidget *parent) :
 {
     setCursor(Qt::BlankCursor);
 
-    addWidget(new WebviewerWidget());
-    addWidget(new IdChangeWidget());
+    webwidget = new WebviewerWidget();
+    idwidget = new IdChangeWidget();
+
+    addWidget(webwidget);
+    addWidget(idwidget);
 }
 
 void ContainerWidget::keyPressEvent(QKeyEvent *e) {
@@ -29,8 +32,7 @@ void ContainerWidget::keyPressEvent(QKeyEvent *e) {
 }
 
 void ContainerWidget::showWebview() {
-    IdChangeWidget *idwidget = (IdChangeWidget*)this->widget(1);
-    QLineEdit *line = (QLineEdit*) idwidget->children()[1];
+    QLineEdit *line = idwidget->lineedit;
 
     QFile idfile(QDir::homePath() + "/id.txt");
     idfile.open(QIODevice::WriteOnly | QIODevice::Text);

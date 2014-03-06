@@ -10,9 +10,9 @@ class IdChangeWidget : public QWidget
 public:
     explicit IdChangeWidget(QWidget *parent = 0);
     void showEvent();
+    QLineEdit *lineedit;
 
 private:
-    QLineEdit *lineedit;
 
 signals:
 
