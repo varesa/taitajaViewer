@@ -2,6 +2,7 @@
 #define WEBVIEWERWIDGET_H
 
 #include <QWidget>
+#include <QWebView>
 
 class WebviewerWidget : public QWidget
 {
@@ -9,9 +10,13 @@ class WebviewerWidget : public QWidget
 public:
     explicit WebviewerWidget(QWidget *parent = 0);
 
+private:
+    QWebView *webview;
+
 signals:
 
 public slots:
+    void refresh(void);
 
 };
 

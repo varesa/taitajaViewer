@@ -17,6 +17,8 @@ ContainerWidget::ContainerWidget(QWidget *parent) :
     webwidget = new WebviewerWidget();
     idwidget = new IdChangeWidget();
 
+    connect(this, SIGNAL(reloadPage()), webwidget, SLOT(refresh()) );
+
     addWidget(webwidget);
     addWidget(idwidget);
 }
@@ -34,7 +36,6 @@ void ContainerWidget::keyPressEvent(QKeyEvent *e) {
 
 void ContainerWidget::showWebview() {
     QLineEdit *line = idwidget->lineedit;
-
     IdStore::store(line->text());
 
     this->widget(1)->hide();
