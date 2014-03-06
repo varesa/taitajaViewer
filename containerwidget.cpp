@@ -1,6 +1,8 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QStackedWidget>
+#include <QFile>
+#include <QDir>
 
 #include "containerwidget.h"
 #include "webviewerwidget.h"
@@ -27,6 +29,16 @@ void ContainerWidget::keyPressEvent(QKeyEvent *e) {
 }
 
 void ContainerWidget::showWebview() {
+    IdChangeWidget *idwidget = (IdChangeWidget*)this->widget(1);
+    QLineEdit *line = (QLineEdit*) idwidget->children()[1];
+
+    QFile idfile(QDir::homePath() + "/id.txt");
+    idfile.open(QIODevice::WriteOnly | QIODevice::Text);
+    qDebug() << idfile.fileName();
+    QTextStream out(&idfile);
+    out << line->text();
+    idfile.close();
+
     this->widget(1)->hide();
     this->widget(0)->show();
 }
