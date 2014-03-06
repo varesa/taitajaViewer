@@ -1,6 +1,7 @@
 #include <QWebView>
 #include <QWebFrame>
 #include <QBoxLayout>
+#include <QDebug>
 
 #include "webviewerwidget.h"
 #include "idstore.h"
@@ -35,7 +36,7 @@ WebviewerWidget::WebviewerWidget(QWidget *parent) :
 void WebviewerWidget::reload(void) {
     QString *id = IdStore::get();
     QUrl url("http://taitaja.finbit.dy.fi/?id=" + *id);
-    qDebug() << url;
+    //qDebug() << url;
 
     webview->load(QUrl("http://taitaja.finbit.dy.fi/?id=" + *id));
 
