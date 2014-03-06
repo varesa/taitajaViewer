@@ -40,6 +40,7 @@ void ContainerWidget::showWebview() {
 
     this->widget(1)->hide();
     this->widget(0)->show();
+    emit reloadPage();
 }
 
 void ContainerWidget::showIdChange() {

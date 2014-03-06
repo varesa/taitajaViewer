@@ -3,6 +3,7 @@
 #include <QBoxLayout>
 
 #include "webviewerwidget.h"
+#include "idstore.h"
 
 WebviewerWidget::WebviewerWidget(QWidget *parent) :
     QWidget(parent)
@@ -15,9 +16,6 @@ WebviewerWidget::WebviewerWidget(QWidget *parent) :
     webview->setUrl(QUrl("http://taitaja.finbit.dy.fi/"));
     webview->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
     webview->page()->mainFrame()->setScrollBarPolicy(Qt::Vertical, Qt::ScrollBarAlwaysOff);
-
-    //QObject::connect(window, SIGNAL(reloadPage()), webview, SLOT(reload()));
-
 
     /*
      * Widget layout
@@ -34,5 +32,8 @@ WebviewerWidget::WebviewerWidget(QWidget *parent) :
 }
 
 void WebviewerWidget::refresh(void) {
-    webview->reload();
+    QString *id = IdStore::get();
+    QUrl url("http://taitaja.finbit.dy.fi/?id=" + *id);
+    qDebug() << url;
+    webview->load(QUrl("http://taitaja.finbit.dy.fi/?id=" + *id));
 }
