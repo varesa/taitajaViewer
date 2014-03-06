@@ -13,9 +13,7 @@ WebviewerWidget::WebviewerWidget(QWidget *parent) :
      */
 
     webview = new QWebView();
-    webview->setUrl(QUrl("http://taitaja.finbit.dy.fi/"));
-    webview->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
-    webview->page()->mainFrame()->setScrollBarPolicy(Qt::Vertical, Qt::ScrollBarAlwaysOff);
+    //webview->setUrl(QUrl("http://taitaja.finbit.dy.fi/"));
 
     /*
      * Widget layout
@@ -28,12 +26,19 @@ WebviewerWidget::WebviewerWidget(QWidget *parent) :
 
     this->setLayout(layout);
     layout->addWidget(webview);
+
+    reload();
+
     webview->show();
 }
 
-void WebviewerWidget::refresh(void) {
+void WebviewerWidget::reload(void) {
     QString *id = IdStore::get();
     QUrl url("http://taitaja.finbit.dy.fi/?id=" + *id);
     qDebug() << url;
+
     webview->load(QUrl("http://taitaja.finbit.dy.fi/?id=" + *id));
+
+    webview->page()->mainFrame()->setScrollBarPolicy(Qt::Horizontal, Qt::ScrollBarAlwaysOff);
+    webview->page()->mainFrame()->setScrollBarPolicy(Qt::Vertical, Qt::ScrollBarAlwaysOff);
 }

@@ -17,7 +17,7 @@ ContainerWidget::ContainerWidget(QWidget *parent) :
     webwidget = new WebviewerWidget();
     idwidget = new IdChangeWidget();
 
-    connect(this, SIGNAL(reloadPage()), webwidget, SLOT(refresh()) );
+    connect(this, SIGNAL(reloadPage()), webwidget, SLOT(reload()) );
 
     addWidget(webwidget);
     addWidget(idwidget);
@@ -44,6 +44,9 @@ void ContainerWidget::showWebview() {
 }
 
 void ContainerWidget::showIdChange() {
+    QString *oldId = IdStore::get();
+    idwidget->lineedit->setText(*oldId);
+
     this->widget(0)->hide();
     this->widget(1)->show();
 

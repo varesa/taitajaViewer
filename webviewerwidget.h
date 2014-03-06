@@ -16,7 +16,7 @@ private:
 signals:
 
 public slots:
-    void refresh(void);
+    void reload(void);
 
 };
 
